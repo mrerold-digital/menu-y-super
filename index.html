@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menú y Súper en Familia · Plantilla de Google Sheets en español</title>
+<!-- GoatCounter y Tally se cargan desde el script solo si CONFIG.goatcounterCode y CONFIG.tallyFormId tienen su valor real (ver pasos-publicacion.md). -->
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Lato,sans-serif;color:#1f2933;background:#fff;line-height:1.5}
+.demo{background:#fff4e5;color:#92400e;text-align:center;font-size:13px;padding:8px;border-bottom:1px solid #f59e0b;font-weight:600}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header{padding:40px 0 22px;text-align:center}
+.kicker{display:inline-block;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:999px}
+h1{font-size:40px;line-height:1.15;margin:14px auto 12px;max-width:840px}
+.lead{font-size:18px;color:#52606d;max-width:740px;margin:0 auto}
+.paises{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:18px;flex-wrap:wrap;font-size:14px;color:#52606d}
+.chip{border:1.5px solid #cbd2d9;background:#fff;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;color:#1f2933}
+.chip.on{color:#fff}
+.shot{margin:22px auto 6px;max-width:1000px}.shot img{width:100%;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.cap{font-size:12.5px;color:#7b8794;text-align:center;margin-bottom:10px}
+.ben{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:30px 0}
+.b{border:1px solid #e4e7eb;border-radius:12px;padding:18px 20px}.b h3{font-size:16.5px;margin-bottom:4px}.b p{font-size:14.5px;color:#52606d}
+.cta{border-radius:16px;padding:30px;display:grid;grid-template-columns:1fr 1.15fr;gap:30px;margin:10px 0 30px}
+.price{font-size:44px;font-weight:800;line-height:1}.price small{font-size:16px;font-weight:600;color:#52606d}
+.note{font-size:14px;color:#52606d;margin-top:10px}
+form{background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.paso{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#7b8794;margin-bottom:4px}
+label.t{display:block;font-size:14px;font-weight:700;margin:10px 0 6px}
+.radios{display:flex;gap:8px;flex-wrap:wrap}.radios label{border:1.5px solid #cbd2d9;border-radius:8px;padding:7px 12px;font-size:14px;cursor:pointer;display:flex;gap:6px;align-items:center}
+input[type=text],select{width:100%;padding:10px 12px;border:1px solid #cbd2d9;border-radius:8px;font-size:14px;font-family:inherit}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:12px;line-height:1.4}.chk input{margin-top:3px;width:16px;height:16px;flex:none}
+button.main,button.sec{width:100%;margin-top:12px;padding:13px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit}
+button.main{border:0;color:#fff}button.sec{background:#fff;border:1.5px solid #cbd2d9;color:#1f2933;font-size:14.5px;padding:10px}
+.aclara{margin-top:10px;background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:10px 12px;font-size:13px;color:#78350f}
+.err{display:none;margin-top:10px;background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;border-radius:8px;padding:9px 12px;font-size:13px}
+.ok{display:none;margin-top:10px;background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;border-radius:8px;padding:12px;font-size:14px}
+#paso2{display:none;border-top:1px dashed #cbd2d9;margin-top:16px;padding-top:12px}
+.small{font-size:11.5px;color:#7b8794;margin-top:8px}
+.faq,.aviso{margin:0 0 30px}.faq h2,.aviso h2{font-size:22px;margin-bottom:10px}.faq details{border-bottom:1px solid #e4e7eb;padding:10px 0}.faq summary{font-weight:600;cursor:pointer}.faq p{color:#52606d;font-size:14.5px;margin-top:6px}
+.aviso{background:#f8fafc;border:1px solid #e4e7eb;border-radius:12px;padding:20px 22px;font-size:14px;color:#3e4c59}.aviso p,.aviso li{margin-top:6px}.aviso ul{padding-left:20px}
+#contador-demo{display:none;margin:0 0 30px;border:2px dashed #f59e0b;border-radius:12px;padding:16px 18px;background:#fffbeb;font-size:13.5px}
+#contador-demo table{border-collapse:collapse;width:100%;margin-top:8px}#contador-demo th,#contador-demo td{border:1px solid #fcd34d;padding:5px 8px;text-align:center}#contador-demo th{background:#fef3c7}
+footer{border-top:1px solid #e4e7eb;padding:18px 0 30px;font-size:12.5px;color:#7b8794;text-align:center}
+.kicker{background:#e8f5ee;color:#0f7b45}.cta{background:#f0f7f3}.price{color:#0f7b45}button.main{background:#0f9d58}.chip.on{background:#0f9d58;border-color:#0f9d58}</style></head><body>
+<div class="demo" id="franja-prueba" style="display:none">MAQUETA · Página de prueba local. El formulario no envía datos (marcador sin conexión).</div>
+<div class="wrap">
+<header><span class="kicker">Plantilla de Google Sheets · En español</span>
+<h1>Planea el menú de la semana, arma la lista del súper sola y cuida tu presupuesto de comida</h1>
+<p class="lead">Una hoja de cálculo en español para familias ocupadas: decides qué van a comer, la hoja revisa lo que ya tienes en casa y te dice qué comprar y cuánto te queda del presupuesto. <span data-k="lead_unidades"></span></p>
+<div class="paises"><span>Elige tu país para ver precio y detalles:</span><button type="button" class="chip" data-pais="us" onclick="elegirPais('us')">Estados Unidos</button><button type="button" class="chip" data-pais="mx" onclick="elegirPais('mx')">México</button><button type="button" class="chip" data-pais="otro" onclick="elegirPais('otro')">Otro país</button></div></header>
+<div class="shot"><img data-img="maqueta-1-menu-y-super.png" alt="Maqueta: menú semanal y lista del súper automática"></div>
+<p class="cap">Imagen ilustrativa (maqueta con <span data-k="cap_precios"></span>). El producto final puede variar.</p>
+<div class="ben">
+<div class="b"><h3>1. Menú semanal para toda la familia</h3><p>Desayuno, comida y cena de lunes a domingo, con tus propios platillos: tinga, pozole, enchiladas o lo que se cocine en tu casa.</p></div>
+<div class="b"><h3>2. Lista del súper que se arma sola</h3><p>A partir del menú, la hoja suma los ingredientes <span data-k="ben_unidades"></span> y los ordena por tienda o sección.</p></div>
+<div class="b"><h3>3. Presupuesto de comida bajo control</h3><p>Anotas lo que gastaste en cada compra <span data-k="ben_moneda"></span> y ves cuánto te queda en la semana y en el mes.</p></div>
+<div class="b"><h3>4. Despensa: no compres lo que ya tienes</h3><p>Registra lo que hay en casa; si ya lo tienes, no aparece en la lista. Lo que está por caducar se marca para usarlo pronto.</p></div></div>
+<div class="shot"><img data-img="maqueta-2-presupuesto-y-despensa.png" alt="Maqueta: presupuesto de comida y despensa"></div>
+<p class="cap">Imagen ilustrativa (maqueta con <span data-k="cap_precios"></span>).</p>
+<section class="cta" id="reservar">
+<div><h2 style="font-size:26px;margin-bottom:10px">Precio previsto al salir</h2>
+<div class="price"><span data-k="precio"></span> <small data-k="precio_nota"></small></div>
+<p class="note"><b>Hoy no se cobra nada.</b> La plantilla todavía está en preparación.</p>
+<p class="note">Presiona <b>“Quiero reservar…”</b> si te gustaría tenerla cuando salga: te pediremos solo un medio de contacto para enviarte el aviso de lanzamiento.</p></div>
+<form id="form-validacion" novalidate onsubmit="return enviarDatos(event)">
+<div class="paso">Paso 1</div>
+<label class="t">¿Dónde vives?</label><div class="radios"><label><input type="radio" name="pais" value="us" onchange="elegirPais(this.value)"> EE. UU.</label><label><input type="radio" name="pais" value="mx" onchange="elegirPais(this.value)"> México</label><label><input type="radio" name="pais" value="otro" onchange="elegirPais(this.value)"> Otro</label></div>
+<div class="err" id="err-pais">Primero elige tu país.</div>
+<button type="button" class="main" id="btn-reservar" onclick="pulsarAccion('reserva')" data-k="boton"></button>
+<div class="aclara" id="aclaracion"><b>Importante:</b> esto es una validación; el producto final todavía no existe. <b>No existe ningún cobro y nunca te pediremos datos bancarios ni de tarjeta.</b></div>
+<button type="button" class="sec" id="btn-aviso" onclick="pulsarAccion('aviso')">Solo avísame cuando salga</button>
+<div id="paso2"><div class="paso">Paso 2</div><label class="t" id="titulo-paso2"></label>
+<label class="t" style="font-weight:600">¿Por dónde prefieres que te avisemos? (puedes elegir ambos)</label>
+<div class="radios"><label><input type="checkbox" name="medio" value="correo" onchange="cambiarMedio()"> Correo</label><label><input type="checkbox" name="medio" value="whatsapp" onchange="cambiarMedio()"> WhatsApp</label></div>
+
+
+<label class="chk"><input type="checkbox" id="consentimiento"> <span>Autorizo recibir información sobre esta plantilla por correo y/o WhatsApp, según el <a href="#aviso-privacidad">aviso de privacidad</a>.</span></label>
+<div class="err" id="err-form"></div>
+<button type="submit" class="main" id="btn-enviar">Continuar: dejar mi correo o WhatsApp</button>
+<p class="small">Se abrirá un formulario seguro (Tally) para escribir tu correo y/o WhatsApp. <b>No existe ningún cobro y nunca te pediremos datos bancarios ni de tarjeta.</b></p></div>
+<div class="ok" id="ok-form"></div>
+</form></section>
+<section class="faq"><h2>Preguntas frecuentes</h2><details open><summary>¿Qué necesito para usarla?</summary><p>Una cuenta de Google gratuita. La plantilla funciona en Google Sheets, en la computadora o en la app del celular.</p></details>
+<details open><summary>¿Es una app?</summary><p>No. Es una hoja de cálculo que copias a tu propio Google Drive; tus datos se quedan en tu cuenta.</p></details>
+<details open><summary>¿Incluye recetas o dietas?</summary><p>No. Tú eliges tus platillos. No es asesoría de nutrición.</p></details>
+<details open><summary>¿Cuándo sale?</summary><p>Todavía no tiene fecha. Si dejas tus datos, te avisamos por el medio que elijas.</p></details></section>
+<section class="aviso" id="aviso-privacidad"><h2>Aviso de privacidad</h2><h3>1. Quién es responsable de tus datos</h3>
+<p><b>Erold Joseph</b>, responsable de la página “Menú y Súper en Familia” (plantilla de Google Sheets en preparación). Contacto para cualquier tema de privacidad: <b><a class="correo-contacto" href="#">CORREO_CONTACTO</a></b>.</p>
+<h3>2. Qué datos recabamos</h3>
+<ul><li>El país donde vives (EE. UU., México u otro).</li><li>Tu nombre (opcional).</li><li>Tu correo electrónico y/o tu número de WhatsApp, según el medio que elijas.</li><li>Si presionaste “Quiero reservar…” o “Solo avísame”, y el enlace por el que llegaste (por ejemplo, Facebook o Pinterest).</li><li>Estadísticas de visitas sin nombre (número de visitas y país aproximado), generadas por el contador de visitas.</li></ul>
+<p><b>No existe ningún cobro y nunca te pediremos datos bancarios ni de tarjeta.</b> Esta página es una validación: el producto todavía no existe.</p>
+<h3>3. Para qué los usamos</h3>
+<p>Solo para: (1) <b>avisarte cuando la plantilla “Menú y Súper en Familia” esté disponible</b>, por el medio que autorizaste (correo y/o WhatsApp), y (2) <b>medir esta validación</b>, es decir, cuántas personas están interesadas y de qué país. No te enviaremos publicidad de otros productos ni usaremos tus datos para otros fines.</p>
+<h3>4. Con quién se comparten</h3>
+<p><b>No vendemos, rentamos ni compartimos tus datos</b> con terceros para sus propios fines. Solo los procesan, por nuestra cuenta, las herramientas técnicas de la página:</p>
+<ul><li><b>Tally</b> (formulario): guarda los datos que escribes en el formulario. Según Tally, es una empresa con sede en Bélgica que almacena los datos de los formularios en Europa.</li><li><b>GoatCounter</b> (contador de visitas): cuenta visitas y clics sin pedir tu nombre ni tus datos de contacto.</li><li><b>GitHub Pages</b> (alojamiento de la página): según GitHub, registra la dirección IP de quien visita la página por motivos de seguridad.</li></ul>
+<h3>5. Cuánto tiempo los guardamos</h3>
+<p>Conservamos tus datos <b>hasta 6 meses</b> a partir de que te registras. Si después de ese plazo el proyecto continúa, <b>te pediremos nuevamente tu autorización</b> para seguir contactándote; si no la das, o si el proyecto no continúa, <b>eliminamos tus datos</b>. Mientras tanto, puedes pedir que los borremos en cualquier momento (punto 6).</p>
+<h3>6. Cómo pedir la baja, el acceso, la corrección o el borrado</h3>
+<p>Escribe a <b><a class="correo-contacto" href="#">CORREO_CONTACTO</a></b> con el asunto “Baja” (o “Borrar mis datos”), o responde a cualquiera de nuestros mensajes con la palabra <b>BAJA</b>. Borraremos tus datos y dejaremos de contactarte. Por el mismo medio puedes pedir ver o corregir tus datos, u oponerte a su uso.</p>
+<h3>7. Tu autorización</h3>
+<p>Solo te contactaremos si marcas la casilla “Autorizo recibir información sobre esta plantilla por correo y/o WhatsApp, según el aviso de privacidad”. La casilla <b>no viene marcada</b> y sin ella no se puede enviar el formulario. Puedes retirar tu autorización en cualquier momento (punto 6).</p>
+<h3>8. Marco legal</h3>
+<p>En México, el tratamiento de datos personales por particulares se rige por la <b>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</b> (texto vigente publicado por la Cámara de Diputados: <a href="https://www.diputados.gob.mx/LeyesBiblio/ref/lfpdppp.htm" rel="noopener">https://www.diputados.gob.mx/LeyesBiblio/ref/lfpdppp.htm</a>).</p>
+<p>Este aviso es una versión sencilla preparada de buena fe y <b>no constituye asesoría legal</b>.</p>
+<h3>9. Cambios a este aviso</h3>
+<p>Si cambiamos este aviso, publicaremos la nueva versión en esta página. Última actualización: 26 de septiembre de 2026.</p><p class="small">También puedes abrir el aviso en una página aparte: <a href="aviso.html">aviso.html</a>.</p></section>
+
+</div>
+<footer>Menú y Súper en Familia · Página de validación · Google Sheets es una marca de Google LLC; este producto no está afiliado a Google.</footer>
+<script src="config.js"></script>
+<script>/* Configuración de la página (textos por país). Los códigos y el correo de contacto están en config.js (sitio) o CONFIG_SITIO (local). */
+var CONFIG = {
+ "prueba": "sheets",
+ "textoGracias": "Te avisaremos cuando esté lista.",
+ "imgPorPais": true,
+ "tallyUrl": "",
+ "textoPaso2Reserva": "Déjanos un medio de contacto para recibir el aviso de lanzamiento:",
+ "textoPaso2Aviso": "Déjanos un medio de contacto para avisarte cuando salga:",
+ "paises": {
+  "us": {
+   "vista": "us",
+   "precio": "USD 9",
+   "precio_nota": "pago único",
+   "boton": "Quiero reservarla por USD 9",
+   "lead_unidades": "Versión para EE. UU.: dólares, libras, onzas y galones.",
+   "ben_unidades": "en libras, onzas y galones",
+   "ben_moneda": "en dólares",
+   "cap_precios": "precios de ejemplo en USD"
+  },
+  "mx": {
+   "vista": "mx",
+   "precio": "$159 MXN",
+   "precio_nota": "pago único",
+   "boton": "Quiero reservarla por $159 MXN",
+   "lead_unidades": "Versión para México: pesos, kilos y litros.",
+   "ben_unidades": "en kilos y litros",
+   "ben_moneda": "en pesos",
+   "cap_precios": "precios de ejemplo en pesos"
+  },
+  "otro": {
+   "vista": "us",
+   "precio": "USD 9",
+   "precio_nota": "pago único (precio en dólares)",
+   "boton": "Quiero reservarla por USD 9",
+   "lead_unidades": "Otro país: te mostramos la versión en dólares con unidades de EE. UU.; dinos tu país y la adaptamos.",
+   "ben_unidades": "en libras, onzas y galones (unidades de EE. UU.)",
+   "ben_moneda": "en dólares",
+   "cap_precios": "precios de ejemplo en USD"
+  }
+ },
+ "entorno": "produccion",
+ "mostrarFranjaPrueba": false
+};
+/* ===== Medición de la validación (misma lógica en local y en producción) =====
+   Eventos que se registran POR SEPARADO:
+   1) Visitas:   en producción, GoatCounter cuenta cada carga de página (ruta + ?canal=&pais=).
+                 En local, registrarVisita() suma al contador de prueba.
+   2) Clics:     registrarClicReserva(pais) -> evento "clic-reservar-<prueba>-<pais>-<canal>"
+                 registrarClicAviso(pais)   -> evento "clic-avisame-<prueba>-<pais>-<canal>"
+   3) Registros: registrarRegistro(pais, accion, medio) -> evento "registro-<prueba>-<pais>-<accion>-<canal>"
+                 (en producción se dispara cuando Tally confirma el envío; el dato real está en Tally).
+   CONFIG.entorno = 'local'      -> franja de prueba visible, formulario interno y contador demo (localStorage, solo contadores).
+   CONFIG.entorno = 'produccion' -> sin franja, sin modo demo; los datos se capturan en Tally (popup)
+                                    y los eventos en GoatCounter. Códigos: CONFIG.goatcounterCode y CONFIG.tallyFormId. */
+if(window.CONFIG_SITIO){ for(var _k in window.CONFIG_SITIO){ CONFIG[_k]=window.CONFIG_SITIO[_k]; } }   // códigos y correo desde CONFIGURACIÓN
+var paisActual = null;           // null = aún no elige
+var accionElegida = null;
+var PH_GC = 'GOATCOUNTER_CODE', PH_TALLY = 'TALLY_FORM_ID';
+function esProduccion(){ return CONFIG.entorno === 'produccion'; }
+function modoDemo(){ if(esProduccion()) return false; var h=location.hostname;
+  return location.protocol==='file:'||h==='localhost'||h==='127.0.0.1'||/[?&]demo=1/.test(location.search); }
+function gcConfigurado(){ return !!CONFIG.goatcounterCode && CONFIG.goatcounterCode !== PH_GC; }
+function tallyConfigurado(){ return !!CONFIG.tallyFormId && CONFIG.tallyFormId !== PH_TALLY; }
+function claveDemo(){ return 'vm2_demo_'+CONFIG.prueba; }
+function leerDemo(){ try{ var d=JSON.parse(localStorage.getItem(claveDemo())); if(d) return d; }catch(e){}
+  var z=function(){return {us:0,mx:0,otro:0,sin_elegir:0};};
+  return {visitas:z(),clics:z(),registros:z(),registrosReserva:z(),contactoWhatsapp:0,contactoCorreo:0}; }
+function guardarDemo(d){ try{ localStorage.setItem(claveDemo(), JSON.stringify(d)); }catch(e){} pintarDemo(); }
+function canalOrigen(){ var m=location.search.match(/[?&]canal=([a-z0-9_-]+)/i); return m?m[1].toLowerCase():'directo'; }
+
+/* ---- carga de herramientas externas (solo si los códigos están puestos) ---- */
+function cargarHerramientas(){
+  if(gcConfigurado()){ var s=document.createElement('script'); s.async=true; s.src='https://gc.zgo.at/count.js';
+    s.setAttribute('data-goatcounter','https://'+CONFIG.goatcounterCode+'.goatcounter.com/count'); document.head.appendChild(s); }
+  if(esProduccion() && tallyConfigurado()){ var t=document.createElement('script'); t.async=true; t.src='https://tally.so/widgets/embed.js'; document.head.appendChild(t); } }
+
+/* ---- eventos ---- */
+function enviarEvento(nombre){ if(window.goatcounter && window.goatcounter.count){ window.goatcounter.count({path: nombre, title: nombre, event: true}); } }
+function registrarVisita(){ var p=paisActual||'sin_elegir'; if(modoDemo()){ var d=leerDemo(); d.visitas[p]++; guardarDemo(d); } }
+function registrarClicReserva(pais){ var p=pais||'sin_elegir'; enviarEvento('clic-reservar-'+CONFIG.prueba+'-'+p+'-'+canalOrigen());
+  if(modoDemo()){ var d=leerDemo(); d.clics[p]++; guardarDemo(d); } }
+function registrarClicAviso(pais){ enviarEvento('clic-avisame-'+CONFIG.prueba+'-'+(pais||'sin_elegir')+'-'+canalOrigen()); }
+function registrarRegistro(pais, accion, medio){
+  enviarEvento('registro-'+CONFIG.prueba+'-'+pais+'-'+accion+'-'+canalOrigen());
+  if(modoDemo()){ var d=leerDemo(); d.registros[pais]++; if(accion==='reserva') d.registrosReserva[pais]++;
+    if(medio.indexOf('whatsapp')>=0) d.contactoWhatsapp++; if(medio.indexOf('correo')>=0) d.contactoCorreo++; guardarDemo(d); } }
+
+/* ---- contador demo (solo local) ---- */
+function pintarDemo(){ var box=document.getElementById('contador-demo'); if(!box) return; if(!modoDemo()){ box.style.display='none'; return; } box.style.display='block';
+  var d=leerDemo(), filas='', cols=['us','mx','otro','sin_elegir'], nom={us:'EE. UU.',mx:'México',otro:'Otro',sin_elegir:'Sin elegir'};
+  cols.forEach(function(c){ filas+='<tr><td>'+nom[c]+'</td><td>'+d.visitas[c]+'</td><td>'+d.clics[c]+'</td><td>'+d.registros[c]+'</td><td>'+d.registrosReserva[c]+'</td></tr>'; });
+  document.getElementById('tabla-demo').innerHTML='<tr><th>País</th><th>Visitas</th><th>Clics en “Quiero reservar”</th><th>Registros (dejaron datos)</th><th>Registros que venían de “reservar”</th></tr>'+filas;
+  document.getElementById('contacto-demo').textContent='Autorizaron contacto por WhatsApp: '+d.contactoWhatsapp+' · por correo: '+d.contactoCorreo; }
+function reiniciarDemo(){ localStorage.removeItem(claveDemo()); pintarDemo(); }
+
+/* ===== Vista por país ===== */
+function aplicarPais(p){ paisActual=p; var v=CONFIG.paises[p]; var vista=v.vista;
+  document.querySelectorAll('[data-k]').forEach(function(el){ var k=el.getAttribute('data-k'); if(v[k]!==undefined) el.innerHTML=v[k]; });
+  document.querySelectorAll('img[data-img]').forEach(function(el){ el.src='img/'+(CONFIG.imgPorPais?vista+'/':'')+el.getAttribute('data-img'); });
+  document.querySelectorAll('.chip').forEach(function(c){ c.classList.toggle('on', c.getAttribute('data-pais')===p); });
+  var r=document.querySelector('input[name="pais"][value="'+p+'"]'); if(r) r.checked=true;
+  document.body.setAttribute('data-pais', p); }
+function elegirPais(p){ aplicarPais(p); }
+
+/* ===== Flujo del formulario ===== */
+function mostrar(id, si){ var e=document.getElementById(id); if(e) e.style.display=si?'block':'none'; }
+function mediosElegidos(){ return Array.prototype.map.call(document.querySelectorAll('input[name="medio"]:checked'), function(x){return x.value;}); }
+function pulsarAccion(accion){
+  var pais=(document.querySelector('input[name="pais"]:checked')||{}).value;
+  if(accion==='reserva') registrarClicReserva(pais); else registrarClicAviso(pais);   // el clic cuenta aunque luego no deje datos
+  if(!pais){ mostrar('err-pais', true); return; } mostrar('err-pais', false);
+  accionElegida=accion; mostrar('ok-form', false);
+  document.getElementById('paso2').style.display='block';
+  document.getElementById('titulo-paso2').textContent = accion==='reserva' ? CONFIG.textoPaso2Reserva : CONFIG.textoPaso2Aviso; }
+function cambiarMedio(){ var m=mediosElegidos();
+  var c=document.getElementById('campo-correo'), w=document.getElementById('campo-wa');
+  if(c) c.style.display = m.indexOf('correo')>=0 ? 'block':'none';
+  if(w){ w.style.display = m.indexOf('whatsapp')>=0 ? 'block':'none';
+    var i=document.getElementById('contacto-wa'); if(i) i.placeholder = paisActual==='mx' ? 'Ej. +52 442 000 0000' : 'Ej. +1 555 000 0000'; } }
+function enviarDatos(ev){ ev.preventDefault();
+  var pais=(document.querySelector('input[name="pais"]:checked')||{}).value;
+  var medios=mediosElegidos(), consent=document.getElementById('consentimiento').checked, faltan=[];
+  if(!pais) faltan.push('tu país');
+  if(!medios.length) faltan.push('elegir correo y/o WhatsApp');
+  if(!esProduccion()){
+    var ce=document.getElementById('contacto-correo'), cw=document.getElementById('contacto-wa');
+    if(medios.indexOf('correo')>=0 && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ce.value.trim())) faltan.push('un correo válido');
+    if(medios.indexOf('whatsapp')>=0 && cw.value.replace(/\D/g,'').length<8) faltan.push('un número de WhatsApp válido'); }
+  if(!consent) faltan.push('marcar la casilla de autorización');
+  var e=document.getElementById('err-form');
+  if(faltan.length){ e.textContent='Para continuar falta: '+faltan.join(', ')+'.'; e.style.display='block'; return false; }
+  mostrar('err-form', false);
+  var medio=medios.join('+'), accion=accionElegida||'aviso';
+  if(esProduccion()){ abrirTally(pais, accion, medio); return false; }
+  registrarRegistro(pais, accion, medio); terminar(pais); return false; }
+function abrirTally(pais, accion, medio){
+  if(!tallyConfigurado()){ var e=document.getElementById('err-form'); e.textContent='El formulario todavía no está conectado (falta configurar TALLY_FORM_ID). No se envió ningún dato.'; e.style.display='block'; return; }
+  var campos={prueba:CONFIG.prueba, pais:pais, accion:accion, canal:canalOrigen(), medio:medio, 'autorizo-pagina':'si'};
+  if(window.Tally && window.Tally.openPopup){
+    window.Tally.openPopup(CONFIG.tallyFormId, {layout:'modal', width:520, hiddenFields:campos,
+      onSubmit:function(){ registrarRegistro(pais, accion, medio); terminar(pais); }});
+  } else {   // respaldo si el script de Tally no cargó: abre el formulario en otra pestaña con los mismos campos ocultos
+    var q=Object.keys(campos).map(function(k){return k+'='+encodeURIComponent(campos[k]);}).join('&');
+    window.open('https://tally.so/r/'+CONFIG.tallyFormId+'?'+q, '_blank', 'noopener'); } }
+function terminar(pais){
+  document.getElementById('form-validacion').reset(); aplicarPais(pais); cambiarMedio();
+  document.getElementById('paso2').style.display='none';
+  var ok=document.getElementById('ok-form'); ok.innerHTML='<b>¡Gracias!</b> '+(CONFIG.textoGracias||'Te avisaremos del lanzamiento.')+' No existe ningún cobro y nunca te pediremos datos bancarios ni de tarjeta.'+(modoDemo()?'<br><small>Modo demo local: no se envió ningún dato; solo se sumó al contador de prueba.</small>':''); ok.style.display='block'; }
+
+function aplicarCorreo(){ var c=CONFIG.correoContacto||'CORREO_CONTACTO';
+  document.querySelectorAll('.correo-contacto').forEach(function(a){ a.textContent=c; if(c!=='CORREO_CONTACTO') a.href='mailto:'+c; }); }
+document.addEventListener('DOMContentLoaded', function(){
+  aplicarCorreo();
+  var f=document.getElementById('franja-prueba'); if(f) f.style.display = CONFIG.mostrarFranjaPrueba ? 'block' : 'none';
+  cargarHerramientas();
+  var m=location.search.match(/[?&]pais=(us|mx|otro)/); if(m) aplicarPais(m[1]); else { aplicarPais('us'); paisActual=null;
+    document.querySelectorAll('input[name="pais"]').forEach(function(r){r.checked=false;}); document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');}); }
+  registrarVisita(); pintarDemo(); cambiarMedio(); });
+</script>
+</body></html>
