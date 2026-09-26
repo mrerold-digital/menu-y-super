@@ -37,7 +37,30 @@ button.main{border:0;color:#fff}button.sec{background:#fff;border:1.5px solid #c
 #contador-demo{display:none;margin:0 0 30px;border:2px dashed #f59e0b;border-radius:12px;padding:16px 18px;background:#fffbeb;font-size:13.5px}
 #contador-demo table{border-collapse:collapse;width:100%;margin-top:8px}#contador-demo th,#contador-demo td{border:1px solid #fcd34d;padding:5px 8px;text-align:center}#contador-demo th{background:#fef3c7}
 footer{border-top:1px solid #e4e7eb;padding:18px 0 30px;font-size:12.5px;color:#7b8794;text-align:center}
-.kicker{background:#e8f5ee;color:#0f7b45}.cta{background:#f0f7f3}.price{color:#0f7b45}button.main{background:#0f9d58}.chip.on{background:#0f9d58;border-color:#0f9d58}</style></head><body>
+.kicker{background:#e8f5ee;color:#0f7b45}.cta{background:#f0f7f3}.price{color:#0f7b45}button.main{background:#0f9d58}.chip.on{background:#0f9d58;border-color:#0f9d58}/* ===== Celular (hasta 600 px). Solo diseño: no cambia textos, enlaces, formulario ni analítica. ===== */
+@media (max-width:600px){
+.wrap{padding:0 16px}
+header{padding:28px 0 18px}
+h1{font-size:clamp(24px,7vw,30px);line-height:1.2;margin:12px auto 10px}
+.lead{font-size:16px}
+.paises{flex-direction:column;align-items:center;gap:10px}
+.paises>span{text-align:center}
+.paises .chip{width:100%;max-width:280px;margin:0;padding:11px 16px;font-size:15px;text-align:center}
+.ben{grid-template-columns:1fr;gap:12px;margin:22px 0}
+.cta{grid-template-columns:1fr;gap:18px;padding:18px 14px}
+.cta>*{min-width:0;width:100%}
+form{width:100%;padding:16px}
+button.main,button.sec{display:block;width:100%}
+.aclara{display:block;width:100%}
+#paso2{width:100%}
+.radios{gap:6px}
+.radios label{flex:1 1 auto;justify-content:center;white-space:nowrap;padding:8px 6px}
+.price small{display:inline-block;white-space:nowrap}
+.chk{width:100%}
+.aviso a{overflow-wrap:anywhere;word-break:break-word}
+body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+}
+</style></head><body>
 <div class="demo" id="franja-prueba" style="display:none">MAQUETA · Página de prueba local. El formulario no envía datos (marcador sin conexión).</div>
 <div class="wrap">
 <header><span class="kicker">Plantilla de Google Sheets · En español</span>
